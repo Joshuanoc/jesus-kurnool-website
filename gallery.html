@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gallery - Stand for Jesus Kurnool</title>
+<link rel="stylesheet" href="css/styles.css" />
+<style>
+  #gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  #gallery-container img, 
+  #gallery-container video {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="prayer.html">Prayer Request</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Gallery</h1>
+
+  <label for="upload-media">Upload Images or Videos:</label><br/>
+  <input type="file" id="upload-media" multiple accept="image/*,video/*" /><br/>
+
+  <div id="gallery-container"></div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Stand for Jesus Kurnool</p>
+</footer>
+
+<script src="js/scripts.js"></script>
+</body>
+</html>

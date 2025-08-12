@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prayer Request - Stand for Jesus Kurnool</title>
+  <style>
+    /* Background gradient animation */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #00529b, #007acc, #00529b, #003d66);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Header animation */
+    header {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px 0;
+      text-align: center;
+      animation: fadeSlideDown 1s ease forwards;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a.active,
+    nav ul li a:hover {
+      color: #ff6f61;
+    }
+
+    /* Underline animation on nav links */
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ff6f61;
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+      width: 100%;
+    }
+
+    /* Main content area */
+    main {
+      flex: 1;
+      max-width: 600px;
+      margin: 40px auto;
+      background: rgba(0,0,0,0.25);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      animation: fadeSlideUp 1s ease forwards;
+    }
+
+    main h1 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 2.2rem;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    /* Form styling */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      animation: fadeIn 1.7s ease forwards;
+    }
+
+    input[type="text"],
+    textarea {
+      padding: 12px 15px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      resize: vertical;
+      transition: box-shadow 0.3s ease;
+      animation: fadeIn 1.9s ease forwards;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      outline: none;
+      box-shadow: 0 0 10px #ff6f61;
+    }
+
+    button {
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      align-self: center;
+      width: 50%;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      animation: fadeIn 2.1s ease forwards;
+    }
+
+    button:hover {
+      background-color: #e55b50;
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 15px 0;
+      background: rgba(0, 0, 0, 0.3);
+      font-size: 0.9rem;
+      animation: fadeSlideUp 1.5s ease forwards;
+    }
+
+    /* Animations */
+    @keyframes fadeSlideDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      main {
+        width: 90%;
+        padding: 20px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="prayer.html" class="active">Prayer Request</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Submit a Prayer Request</h1>
+    <form id="prayer-form">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="request">Prayer Request:</label>
+      <textarea id="request" name="request" rows="5" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Stand for Jesus Kurnool</p>
+  </footer>
+
+  <script>
+    document.getElementById("prayer-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Thank you for submitting your prayer request. We will keep you in our prayers!");
+      this.reset();
+    });
+  </script>
+</body>
+</html>

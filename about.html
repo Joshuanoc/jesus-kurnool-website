@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stand for Jesus Kurnool - Home</title>
+<style>
+  /* Fluid animated gradient background */
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(-45deg, #00529b, #007acc, #00aaff, #00529b);
+    background-size: 400% 400%;
+    animation: gradientMove 20s ease infinite;
+    color: white;
+    display: flex;
+    flex-direction: column; /* Changed for navbar + container */
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  nav.navbar {
+    width: 100%;
+    background: rgba(0,0,50,0.7);
+    padding: 15px 0;
+  }
+  nav.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  nav.navbar ul li {
+    margin: 0 15px;
+  }
+  nav.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+  }
+  nav.navbar ul li a:hover {
+    color: #ff6f61;
+  }
+
+  /* Container */
+  .container {
+    flex: 1; /* take remaining space below navbar */
+    max-width: 700px;
+    padding: 40px 20px;
+    background: rgba(0, 0, 50, 0.4);
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(255,255,255,0.2);
+    margin-top: 30px;
+    animation: fadeInUp 1.5s ease forwards;
+  }
+
+  /* Animated headline */
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 3px;
+    animation: slideInLeft 1.5s ease forwards;
+  }
+
+  /* Animated subtitle */
+  p.subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeIn 3s ease forwards;
+  }
+
+  /* Call-to-action button */
+  .btn {
+    background: #ff6f61;
+    color: white;
+    font-weight: bold;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 6px 15px rgba(255,111,97,0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 4s ease forwards;
+  }
+
+  .btn:hover {
+    background: #e55b50;
+    transform: scale(1.05);
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    0% {opacity: 0; transform: translateY(40px);}
+    100% {opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes slideInLeft {
+    0% {opacity: 0; transform: translateX(-60px);}
+    100% {opacity: 1; transform: translateX(0);}
+  }
+
+  @keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2.2rem;
+    }
+    p.subtitle {
+      font-size: 1rem;
+    }
+    .btn {
+      padding: 12px 30px;
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="prayer.html">Prayer</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="lyrics.html">Lyrics</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Stand for Jesus Kurnool</h1>
+    <p class="subtitle">Connecting the community through faith, hope, and love.</p>
+    <button class="btn" onclick="location.href='about.html'">Learn More</button>
+  </div>
+</body>
+</html>

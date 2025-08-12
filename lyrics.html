@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zion Songs Lyrics - Multi-language</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background: #f5f5f5;
+    color: #333;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .language-selector {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .language-selector button {
+    padding: 8px 16px;
+    cursor: pointer;
+    border: 2px solid #007acc;
+    background: white;
+    color: #007acc;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .language-selector button.active,
+  .language-selector button:hover {
+    background-color: #007acc;
+    color: white;
+  }
+  #search-box {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  #songs-list {
+    list-style: none;
+    padding-left: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+  }
+  #songs-list li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  #songs-list li:hover {
+    background-color: #e0e0e0;
+  }
+  #songs-list li.active {
+    background-color: #007acc;
+    color: white;
+  }
+  #lyrics-container {
+    margin-top: 2rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    min-height: 220px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
+  }
+</style>
+</head>
+<body>
+  <h1>Zion Songs Lyrics</h1>
+
+  <div class="language-selector">
+    <button data-lang="english" class="active">English</button>
+    <button data-lang="telugu">Telugu</button>
+    <button data-lang="hindi">Hindi</button>
+  </div>
+
+  <input type="text" id="search-box" placeholder="Search songs..." />
+
+  <ul id="songs-list"><li>Loading songs...</li></ul>
+
+  <div id="lyrics-container">Select a song to see the lyrics.</div>
+
+<script>
+  const songsData = {
+    english: [
+      { id: 'eng1', title: 'Amazing Grace', lyrics: `Amazing grace! How sweet the sound\nThat saved a wretch like me.\nI once was lost, but now am found;\nWas blind, but now I see.` },
+      { id: 'eng2', title: 'How Great Thou Art', lyrics: `O Lord my God, When I in awesome wonder\nConsider all the worlds Thy Hands have made,\nI see the stars, I hear the rolling thunder,\nThy power throughout the universe displayed.` },
+    ],
+    telugu: [
+      { id: 'tel1', title: 'ప్రభు నా తోడు', lyrics: `ప్రభు నా తోడు, నేను భయపడను\nఅతనె నన్ను కాపాడును.\nనమ్మకముతో ముందుకు సాగిపోతాను\nప్రభు నా తోడు, నేను భయపడను.` },
+      { id: 'tel2', title: 'నీవు నా దేవుడు', lyrics: `నీవు నా దేవుడు, నీ ప్రేమ శాశ్వతం\nనువ్వే నా ఆశ, నా ధైర్యం.\nప్రతి రోజూ నీ కృపను చూస్తాను\nనీవు నా దేవుడు, నా జీవితం.` },
+    ],
+    hindi: [
+      { id: 'hin1', title: 'प्रभु मेरे सहारे', lyrics: `प्रभु मेरे सहारे, मैं डरता नहीं\nवह मुझे बचाता है।\nविश्वास के साथ मैं आगे बढ़ता हूं\nप्रभु मेरे सहारे, मैं डरता नहीं।` },
+      { id: 'hin2', title: 'महान हैं तू', lyrics: `हे प्रभु मेरे भगवान, जब मैं अद्भुत विस्मय में\nदेखता हूँ सारी दुनियाँ जो तेरा हाथ बनी है,\nमैं देखता हूँ तारे, मैं सुनता हूँ गरज,\nतेरी शक्ति सारी सृष्टि में छायी है।` },
+    ]
+  };
+
+  const songsList = document.getElementById('songs-list');
+  const lyricsContainer = document.getElementById('lyrics-container');
+  const searchBox = document.getElementById('search-box');
+  const languageButtons = document.querySelectorAll('.language-selector button');
+
+  let currentLang = 'english';
+  let filteredSongs = songsData[currentLang];
+  let selectedSongId = null;
+
+  function displaySongs(songs) {
+    songsList.innerHTML = '';
+    if (songs.length === 0) {
+      songsList.innerHTML = '<li>No songs found.</li>';
+      lyricsContainer.textContent = 'Select a song to see the lyrics.';
+      return;
+    }
+    songs.forEach(song => {
+      const li = document.createElement('li');
+      li.textContent = song.title;
+      li.dataset.id = song.id;
+      li.addEventListener('click', () => {
+        selectSong(song.id);
+      });
+      if (song.id === selectedSongId) {
+        li.classList.add('active');
+      }
+      songsList.appendChild(li);
+    });
+  }
+
+  function selectSong(id) {
+    selectedSongId = id;
+    const song = filteredSongs.find(s => s.id === id);
+    if (!song) return;
+    lyricsContainer.textContent = song.lyrics;
+    updateActiveSong();
+  }
+
+  function updateActiveSong() {
+    const items = songsList.querySelectorAll('li');
+    items.forEach(li => {
+      li.classList.toggle('active', li.dataset.id === selectedSongId);
+    });
+  }
+
+  function filterSongs() {
+    const query = searchBox.value.toLowerCase();
+    filteredSongs = songsData[currentLang].filter(song =>
+      song.title.toLowerCase().includes(query)
+    );
+    selectedSongId = null;
+    displaySongs(filteredSongs);
+    lyricsContainer.textContent = 'Select a song to see the lyrics.';
+  }
+
+  languageButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.lang === currentLang) return;
+      currentLang = btn.dataset.lang;
+      selectedSongId = null;
+      searchBox.value = '';
+      languageButtons.forEach(b => b.classList.toggle('active', b === btn));
+      filteredSongs = songsData[currentLang];
+      displaySongs(filteredSongs);
+      lyricsContainer.textContent = 'Select a song to see the lyrics.';
+    });
+  });
+
+  searchBox.addEventListener('input', filterSongs);
+
+  // Initial load
+  displaySongs(filteredSongs);
+</script>
+</body>
+</html>
